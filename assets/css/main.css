@@ -249,9 +249,20 @@ a { text-decoration: none; color: inherit; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .snt-nav__menu, .snt-nav__right { display: none; }
-  .snt-nav__hamburger { display: flex; }
+  /* snt-mobile-nav-v2 — keep language picker visible on mobile */
+  .snt-nav__menu { display: none; }
+  .snt-nav__cta { display: none; }
+  .snt-nav__right { gap: 6px; margin-left: auto; }
+  .snt-nav__lang-btn { padding: 6px 9px; font-size: 12px; gap: 4px; }
+  .snt-nav__lang-btn .chevron { display: none; }
+  .snt-nav__lang-menu { right: -8px; min-width: 180px; max-height: 70vh; overflow-y: auto; }
+  .snt-nav__hamburger { display: flex; margin-left: 0; padding: 8px 6px; }
+  .snt-nav__inner { gap: 12px; padding: 0 16px; }
   .snt-footer__top { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 380px) {
+  .snt-nav__lang-btn span:not(.chevron):not(.globe) { display: none; }
+  .snt-nav__lang-btn { padding: 6px 8px; }
 }
 @media (max-width: 600px) {
   .snt-footer__top { grid-template-columns: 1fr; gap: 28px; }
