@@ -7,6 +7,28 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  // Consent Mode v2 — GDPR default denied
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'granted',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  // Restore prior consent if user already chose
+  try {
+    var c = localStorage.getItem('snt_cookie_consent');
+    if (c === 'granted') {
+      gtag('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted'
+      });
+    }
+  } catch(e){}
   gtag('js', new Date());
   gtag('config', 'G-M0NHF9NPQG', {
     cookie_flags: 'SameSite=None;Secure',
@@ -52,5 +74,47 @@
 <p>If you are not redirected automatically, <a href="research.html">click here</a>.</p>
 </div>
 <script>location.replace('research.html');</script>
+
+<!-- snt-cookie-banner-v1 -->
+<style>
+.snt-cc{position:fixed;bottom:16px;right:16px;left:16px;max-width:420px;margin-left:auto;background:#fff;border:1px solid #e6e9f0;border-radius:12px;box-shadow:0 18px 44px -12px rgba(15,26,51,.18),0 0 0 1px rgba(15,26,51,.04);padding:18px 20px;font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,sans-serif;font-size:13px;line-height:1.55;color:#1b2333;z-index:10000;}
+.snt-cc[hidden]{display:none;}
+.snt-cc__title{font-size:14px;font-weight:700;margin:0 0 6px;color:#0f1a33;}
+.snt-cc__desc{margin:0 0 14px;font-size:12.5px;color:#6a7589;}
+.snt-cc__btns{display:flex;gap:8px;}
+.snt-cc__btn{flex:1;padding:9px 12px;font-size:12.5px;font-weight:700;border-radius:6px;border:1px solid transparent;cursor:pointer;font-family:inherit;line-height:1;}
+.snt-cc__accept{background:#004ea1;color:#fff;}
+.snt-cc__accept:hover{background:#003478;}
+.snt-cc__reject{background:#fff;color:#6a7589;border-color:#e6e9f0;}
+.snt-cc__reject:hover{color:#1b2333;border-color:#1b2333;}
+@media(max-width:480px){.snt-cc{left:12px;right:12px;bottom:12px;padding:14px 16px;}}
+</style>
+<script>
+(function(){
+  try {
+    if (localStorage.getItem('snt_cookie_consent')) return;
+  } catch(e){}
+  var b = document.createElement('div');
+  b.className = 'snt-cc';
+  b.setAttribute('role', 'dialog');
+  b.setAttribute('aria-label', 'Cookie consent');
+  b.innerHTML = '<h3 class="snt-cc__title">我们重视您的隐私</h3><p class="snt-cc__desc">我们使用 Cookie 分析网站流量并改善您的体验。点击"全部接受"即表示您同意使用分析 Cookie。您可以随时更改此设置。</p><div class="snt-cc__btns"><button type="button" class="snt-cc__btn snt-cc__reject">全部拒绝</button><button type="button" class="snt-cc__btn snt-cc__accept">全部接受</button></div>';
+  document.body.appendChild(b);
+  function decide(granted){
+    try { localStorage.setItem('snt_cookie_consent', granted ? 'granted' : 'denied'); } catch(e){}
+    if (window.gtag) {
+      gtag('consent', 'update', {
+        ad_storage: granted ? 'granted' : 'denied',
+        ad_user_data: granted ? 'granted' : 'denied',
+        ad_personalization: granted ? 'granted' : 'denied',
+        analytics_storage: granted ? 'granted' : 'denied'
+      });
+    }
+    b.remove();
+  }
+  b.querySelector('.snt-cc__accept').addEventListener('click', function(){ decide(true); });
+  b.querySelector('.snt-cc__reject').addEventListener('click', function(){ decide(false); });
+})();
+</script>
 </body>
 </html>

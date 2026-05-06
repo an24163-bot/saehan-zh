@@ -7,6 +7,28 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  // Consent Mode v2 — GDPR default denied
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'granted',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  // Restore prior consent if user already chose
+  try {
+    var c = localStorage.getItem('snt_cookie_consent');
+    if (c === 'granted') {
+      gtag('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted'
+      });
+    }
+  } catch(e){}
   gtag('js', new Date());
   gtag('config', 'G-M0NHF9NPQG', {
     cookie_flags: 'SameSite=None;Secure',
@@ -25,7 +47,7 @@
 <meta property="og:url" content="https://zh.saehannanotech.com/machines.html">
 <meta property="og:locale" content="zh_CN">
 <link rel="canonical" href="https://zh.saehannanotech.com/machines.html">
-<link rel="stylesheet" href="assets/css/main.css?v=20260504c">
+<link rel="stylesheet" href="assets/css/main.css?v=20260504d">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="images/icon-192.png">
 <meta property="og:image" content="https://zh.saehannanotech.com/images/og-image.jpg">
@@ -235,5 +257,5 @@
   </div>
 </div>
 </footer>
-<script src="assets/js/main.js?v=20260504c"></script>
+<script src="assets/js/main.js?v=20260504d"></script>
 <script>var _y=document.getElementById('snt-yr');if(_y)_y.textContent=new Date().getFullYear();</script>
