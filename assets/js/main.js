@@ -159,6 +159,14 @@
           if (res.ok) {
             feedback.textContent = feedback.getAttribute('data-success-text');
             feedback.className = 'snt-rfq__feedback is-success';
+            // GA4 conversion event
+            if (window.gtag) {
+              gtag('event', 'generate_lead', {
+                form_id: form.id || 'rfq',
+                source_page: location.pathname,
+                source_lang: document.documentElement.lang || 'unknown'
+              });
+            }
             form.reset();
           } else {
             throw new Error('http ' + res.status);
@@ -174,4 +182,48 @@
         });
     });
   });
+})();
+
+/* snt-ga4-events-v1 */
+(function(){
+  if (typeof window === 'undefined') return;
+  function fire(name, params){
+    try { if (window.gtag) gtag('event', name, params || {}); } catch(e){}
+  }
+  // Phone clicks (tel:)
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a) fire('click_phone', { phone: a.getAttribute('href').replace('tel:',''), source: location.pathname });
+  });
+  // Email clicks (mailto:)
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="mailto:"]');
+    if (a) fire('click_email', { email: a.getAttribute('href').replace('mailto:',''), source: location.pathname });
+  });
+  // CTA clicks (.snt-nav__cta and hero CTAs)
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('.snt-nav__cta, .idx-hero__cta, .snt-hero__cta');
+    if (a) fire('click_cta', { cta_text: (a.textContent || '').trim().slice(0, 40), source: location.pathname });
+  });
+  // Language switcher clicks
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('.snt-nav__lang-item, .snt-mobile-lang__item, .snt-ft-clean__links a');
+    if (a) {
+      var href = a.getAttribute('href') || '';
+      var m = href.match(/https?:\/\/([^.\/]+)\.saehannanotech\.com/);
+      var target = m ? m[1] : (href.indexOf('saehannanotech.com') > -1 ? 'ko' : 'unknown');
+      fire('click_lang_switch', { from: document.documentElement.lang || 'unknown', to: target });
+    }
+  });
+  // Scroll depth 75% (high-intent)
+  var scrolled75 = false;
+  window.addEventListener('scroll', function(){
+    if (scrolled75) return;
+    var h = document.documentElement;
+    var pct = (window.scrollY + window.innerHeight) / h.scrollHeight;
+    if (pct >= 0.75) {
+      scrolled75 = true;
+      fire('scroll_75', { source: location.pathname });
+    }
+  }, { passive: true });
 })();
