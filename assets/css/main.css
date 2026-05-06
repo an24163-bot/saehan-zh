@@ -410,3 +410,25 @@ table.snt-tbl-grouped tr:not(.cat):hover th{background:#eef4fb;}
 .snt-mobile-lang__name{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;}
 .snt-mobile-lang__item--active .snt-mobile-lang__name::after{content:"✓";color:var(--snt-blue);font-size:13px;margin-left:auto;}
 .snt-mobile-lang__region{font-size:11.5px;font-weight:500;color:var(--snt-muted);}
+
+/* snt-rfq-v1 */
+.snt-rfq{padding:clamp(48px,7vw,80px) clamp(20px,4vw,48px);background:#f5f7fb;}
+.snt-rfq__inner{max-width:920px;margin:0 auto;}
+.snt-rfq__head{text-align:center;margin-bottom:28px;}
+.snt-rfq__eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;color:#004ea1;text-transform:uppercase;}
+.snt-rfq__title{font-size:clamp(24px,3vw,32px);font-weight:800;color:#0f1a33;margin:8px 0 6px;letter-spacing:-.02em;}
+.snt-rfq__desc{font-size:14.5px;color:#6a7589;line-height:1.6;}
+.snt-rfq__form{background:#fff;border:1px solid #e6e9f0;border-radius:16px;padding:clamp(24px,3vw,40px);box-shadow:0 12px 40px -16px rgba(15,26,51,.08);}
+.snt-rfq__row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+@media(max-width:600px){.snt-rfq__row{grid-template-columns:1fr;}}
+.snt-rfq__field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.snt-rfq__field>span{font-size:12px;font-weight:600;color:#1b2333;letter-spacing:.01em;}
+.snt-rfq__field input,.snt-rfq__field textarea{padding:10px 12px;border:1px solid #e6e9f0;border-radius:8px;font-family:inherit;font-size:14px;color:#1b2333;background:#fff;transition:border-color .15s,box-shadow .15s;}
+.snt-rfq__field input:focus,.snt-rfq__field textarea:focus{outline:none;border-color:#004ea1;box-shadow:0 0 0 3px rgba(0,78,161,.12);}
+.snt-rfq__field textarea{resize:vertical;min-height:96px;}
+.snt-rfq__submit{width:100%;padding:13px 20px;background:#004ea1;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;font-family:inherit;}
+.snt-rfq__submit:hover{background:#003478;}
+.snt-rfq__submit:disabled{opacity:.6;cursor:wait;}
+.snt-rfq__feedback{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:13.5px;font-weight:600;display:none;}
+.snt-rfq__feedback.is-success{display:block;background:#e6f4ec;color:#1b6e3a;border:1px solid #b8dcc7;}
+.snt-rfq__feedback.is-error{display:block;background:#fdecec;color:#8b1e1e;border:1px solid #f1b9b9;}

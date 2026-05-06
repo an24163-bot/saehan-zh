@@ -141,3 +141,37 @@
   })();
 
 })();
+
+/* snt-rfq-v1 */
+(function(){
+  document.querySelectorAll('form[data-rfq]').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = form.querySelector('button[type=submit]');
+      var feedback = form.querySelector('.snt-rfq__feedback');
+      if (!btn || !feedback) return;
+      btn.disabled = true;
+      btn.textContent = btn.getAttribute('data-sending') || 'Sending...';
+      feedback.className = 'snt-rfq__feedback';
+      var data = new FormData(form);
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function(res){
+          if (res.ok) {
+            feedback.textContent = feedback.getAttribute('data-success-text');
+            feedback.className = 'snt-rfq__feedback is-success';
+            form.reset();
+          } else {
+            throw new Error('http ' + res.status);
+          }
+        })
+        .catch(function(){
+          feedback.textContent = feedback.getAttribute('data-error-text');
+          feedback.className = 'snt-rfq__feedback is-error';
+        })
+        .finally(function(){
+          btn.disabled = false;
+          btn.textContent = btn.getAttribute('data-default') || 'Send';
+        });
+    });
+  });
+})();
