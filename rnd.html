@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<!-- snt-ga4-v1 -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M0NHF9NPQG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  // Consent Mode v2 — GDPR default denied
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'granted',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  // Restore prior consent if user already chose
+  try {
+    var c = localStorage.getItem('snt_cookie_consent');
+    if (c === 'granted') {
+      gtag('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted'
+      });
+    }
+  } catch(e){}
+  gtag('js', new Date());
+  gtag('config', 'G-M0NHF9NPQG', {
+    cookie_flags: 'SameSite=None;Secure',
+    cookie_domain: 'auto'
+  });
+</script>
+
 <meta charset="UTF-8">
 <title>R&D Performance | Saehan Nanotech</title>
 <meta name="description" content="This page has moved. Saehan Nanotech R&D performance, patents, and national projects are now part of the Research page.">
@@ -8,9 +43,57 @@
 <meta http-equiv="refresh" content="0; url=research.html">
 <meta name="robots" content="noindex, follow">
 <style>body{font-family:-apple-system,'Pretendard','Noto Sans KR',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#f5f7fb;color:#0f1a33;}a{color:#004ea1;text-decoration:underline;}.box{text-align:center;padding:32px;}</style>
-<meta property="og:image" content="https://zh.saehannanotech.com/images/og-image.jpg">
+<meta property="og:image" content="https://zh.saehannanotech.com/images/og-image.jpg?v=20260510b">
     <meta name="google-site-verification" content="mXmmk33k-2WdbxZ59-fDF8Toj247meMrYEo_QeU6_Is" />
     <meta name="naver-site-verification" content="57109ed78bec0d98722b3b7c9be50ee6ef7726f3" />
+<!-- snt-schema-v1 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://zh.saehannanotech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "R&D Performance",
+      "item": "https://zh.saehannanotech.com/rnd.html"
+    }
+  ]
+}
+</script>
+<!-- snt-clarity-v1 -->
+<script type="text/javascript">
+(function(){
+  function loadClarity(){
+    if (window.__sntClarityLoaded) return;
+    window.__sntClarityLoaded = true;
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wmr1yypwhk");
+  }
+  // Honor cookie consent: load only after user accepts (or already accepted)
+  try {
+    if (localStorage.getItem('snt_cookie_consent') === 'granted') {
+      loadClarity();
+    } else {
+      // Listen for accept click; banner script removes itself after click
+      document.addEventListener('click', function(ev){
+        if (ev.target && ev.target.classList && ev.target.classList.contains('snt-cc__accept')) {
+          setTimeout(loadClarity, 100);
+        }
+      }, {capture:true});
+    }
+  } catch(e){ loadClarity(); }
+})();
+</script>
 </head>
 <body>
 <div class="box">
@@ -18,6 +101,48 @@
 <p>If you are not redirected automatically, <a href="research.html">click here</a>.</p>
 </div>
 <script>location.replace('research.html');</script>
+
+<!-- snt-cookie-banner-v1 -->
+<style>
+.snt-cc{position:fixed;bottom:16px;right:16px;left:16px;max-width:420px;margin-left:auto;background:#fff;border:1px solid #e6e9f0;border-radius:12px;box-shadow:0 18px 44px -12px rgba(15,26,51,.18),0 0 0 1px rgba(15,26,51,.04);padding:18px 20px;font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,sans-serif;font-size:13px;line-height:1.55;color:#1b2333;z-index:10000;}
+.snt-cc[hidden]{display:none;}
+.snt-cc__title{font-size:14px;font-weight:700;margin:0 0 6px;color:#0f1a33;}
+.snt-cc__desc{margin:0 0 14px;font-size:12.5px;color:#6a7589;}
+.snt-cc__btns{display:flex;gap:8px;}
+.snt-cc__btn{flex:1;padding:9px 12px;font-size:12.5px;font-weight:700;border-radius:6px;border:1px solid transparent;cursor:pointer;font-family:inherit;line-height:1;}
+.snt-cc__accept{background:#004ea1;color:#fff;}
+.snt-cc__accept:hover{background:#003478;}
+.snt-cc__reject{background:#fff;color:#6a7589;border-color:#e6e9f0;}
+.snt-cc__reject:hover{color:#1b2333;border-color:#1b2333;}
+@media(max-width:480px){.snt-cc{left:12px;right:12px;bottom:12px;padding:14px 16px;}}
+</style>
+<script>
+(function(){
+  try {
+    if (localStorage.getItem('snt_cookie_consent')) return;
+  } catch(e){}
+  var b = document.createElement('div');
+  b.className = 'snt-cc';
+  b.setAttribute('role', 'dialog');
+  b.setAttribute('aria-label', 'Cookie consent');
+  b.innerHTML = '<h3 class="snt-cc__title">我们重视您的隐私</h3><p class="snt-cc__desc">我们使用 Cookie 分析网站流量并改善您的体验。点击"全部接受"即表示您同意使用分析 Cookie。您可以随时更改此设置。</p><div class="snt-cc__btns"><button type="button" class="snt-cc__btn snt-cc__reject">全部拒绝</button><button type="button" class="snt-cc__btn snt-cc__accept">全部接受</button></div>';
+  document.body.appendChild(b);
+  function decide(granted){
+    try { localStorage.setItem('snt_cookie_consent', granted ? 'granted' : 'denied'); } catch(e){}
+    if (window.gtag) {
+      gtag('consent', 'update', {
+        ad_storage: granted ? 'granted' : 'denied',
+        ad_user_data: granted ? 'granted' : 'denied',
+        ad_personalization: granted ? 'granted' : 'denied',
+        analytics_storage: granted ? 'granted' : 'denied'
+      });
+    }
+    b.remove();
+  }
+  b.querySelector('.snt-cc__accept').addEventListener('click', function(){ decide(true); });
+  b.querySelector('.snt-cc__reject').addEventListener('click', function(){ decide(false); });
+})();
+</script>
 <!-- snt-fab-include -->
 <script src="assets/js/floating-cta.js?v=20260521"></script>
 </body>
