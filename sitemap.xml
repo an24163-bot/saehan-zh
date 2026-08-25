@@ -113,7 +113,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  <url>
+    <url>
+    <loc>https://zh.saehannanotech.com/notice/notice-rare-earth-wire-saw-upgrade-export-2026.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+<url>
     <loc>https://zh.saehannanotech.com/notice/notice-changwon-expansion-2022.html</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>yearly</changefreq>
